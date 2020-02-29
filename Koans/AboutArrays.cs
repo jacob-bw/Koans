@@ -27,7 +27,7 @@ namespace DotNetCoreKoans.Koans
         public void ArrayLiterals()
         {
             //You don't have to specify a type if the arguments can be inferred
-            var array = new [] { 42 };
+            var array = new[] { 42 };
             Assert.Equal(typeof(int[]), array.GetType());
             Assert.Equal(new int[] { 42 }, array);
 
@@ -38,7 +38,7 @@ namespace DotNetCoreKoans.Koans
             Assert.True(array.IsFixedSize);
 
             //...it means we can't do this: array[1] = 13;
-            Assert.Throws(typeof(IndexOutOfRangeException), delegate() { array[1] = 13; });
+            Assert.Throws(typeof(IndexOutOfRangeException), delegate () { array[1] = 13; });
 
             //This is because the array is fixed at length 1. You could write a function
             //which created a new array bigger than the last, copied the elements over, and
@@ -48,7 +48,7 @@ namespace DotNetCoreKoans.Koans
             Assert.Equal(array, dynamicArray.ToArray());
 
             dynamicArray.Add(13);
-            Assert.Equal((new int[] { 42, 13}), dynamicArray.ToArray());
+            Assert.Equal((new int[] { 42, 13 }), dynamicArray.ToArray());
         }
 
         [Step(3)]
@@ -58,7 +58,7 @@ namespace DotNetCoreKoans.Koans
 
             Assert.Equal("peanut", array[0]);
             Assert.Equal("jelly", array[3]);
-            
+
             //This doesn't work: Assert.Equal(FILL_ME_IN, array[-1]);
         }
 
@@ -67,8 +67,8 @@ namespace DotNetCoreKoans.Koans
         {
             var array = new[] { "peanut", "butter", "and", "jelly" };
 
-			Assert.Equal(new string[] { "peanut", "butter"  }, array.Take(2).ToArray());
-			Assert.Equal(new string[] { "butter", "and" }, array.Skip(1).Take(2).ToArray());
+            Assert.Equal(new string[] { "peanut", "butter" }, array.Take(2).ToArray());
+            Assert.Equal(new string[] { "butter", "and" }, array.Skip(1).Take(2).ToArray());
         }
 
         [Step(5)]
@@ -77,10 +77,10 @@ namespace DotNetCoreKoans.Koans
             var array = new[] { 1, 2 };
             var stack = new Stack(array);
             stack.Push("last");
-            Assert.Equal(FILL_ME_IN, stack.ToArray());
+            Assert.Equal(new object[]{ "last", 2, 1}, stack.ToArray());
             var poppedValue = stack.Pop();
-            Assert.Equal(FILL_ME_IN, poppedValue);
-            Assert.Equal(FILL_ME_IN, stack.ToArray());
+            Assert.Equal("last", poppedValue);
+            Assert.Equal(new object[] { 2 , 1 }, stack.ToArray());
         }
 
         [Step(6)]
@@ -94,16 +94,16 @@ namespace DotNetCoreKoans.Koans
             var list = new LinkedList<string>(array);
 
             list.AddFirst("Say");
-            Assert.Equal(FILL_ME_IN, list.ToArray());
+            Assert.Equal(new[] { "Say", "Hello", "World" }, list.ToArray());
 
             list.RemoveLast();
-            Assert.Equal(FILL_ME_IN, list.ToArray());
+            Assert.Equal(new[] { "Say", "Hello" }, list.ToArray());
 
             list.RemoveFirst();
-            Assert.Equal(FILL_ME_IN, list.ToArray());
+            Assert.Equal(new[] { "Hello" }, list.ToArray());
 
             list.AddAfter(list.Find("Hello"), "World");
-            Assert.Equal(FILL_ME_IN, list.ToArray());
+            Assert.Equal(new[] { "Hello", "World" }, list.ToArray());
         }
 
     }
